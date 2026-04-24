@@ -1,22 +1,18 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// === IMPORTANTE PER PIXEL ART: Disattiva la sfocatura ===
+
 ctx.imageSmoothingEnabled = false;
 
-// --- CARICAMENTO RISORSE ---
-
-// 1. Sfondo (La tua pietra)
 const bgImage = new Image();
-bgImage.src = 'image_b20f58.png'; // Assicurati di avere questo file
+bgImage.src = 'image_b20f58.png'; 
 let bgPattern;
 bgImage.onload = () => { 
     bgPattern = ctx.createPattern(bgImage, 'repeat'); 
 };
 
-// 2. Personaggio (L'immagine con TRASPARENZA REALE)
 const playerImage = new Image();
-// SALVA L'IMMAGINE SOPRA CON QUESTO NOME
+
 playerImage.src = 'personaggio_trasparente.png'; 
 
 let playerLoaded = false;
@@ -27,13 +23,13 @@ playerImage.onload = () => {
 const player = {
     x: 50,
     y: 50,
-    width: 30,         // Dimensione visiva
-    height: 30,        // Dimensione visiva
-    collisionSize: 22, // Scatola di collisione
+    width: 30,         
+    height: 30,        
+    collisionSize: 22,
     speed: 4
 };
 
-// --- OSTACOLI ---
+
 const obstacles = [
     { x: 0, y: 0, w: 600, h: 20 },      
     { x: 0, y: 380, w: 600, h: 20 },    
@@ -81,13 +77,13 @@ function update() {
 }
 
 function draw() {
-    // Pulisce il canvas
+  
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Re-imposta smoothing ad ogni frame (a volte necessario)
+   
     ctx.imageSmoothingEnabled = false;
 
-    // 1. Disegna il Pavimento (Pattern di Pietra)
+   
     if (bgPattern) {
         ctx.fillStyle = bgPattern;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -96,7 +92,7 @@ function draw() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    // 2. Disegna gli Ostacoli (Rocce marroni)
+  
     ctx.fillStyle = '#5d4037'; 
     obstacles.forEach(obs => {
         ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
@@ -105,11 +101,11 @@ function draw() {
         ctx.strokeRect(obs.x, obs.y, obs.w, obs.h);
     });
 
-    // 3. Disegna il Personaggio Trasparente
+  
     if (playerLoaded) {
         ctx.drawImage(playerImage, player.x, player.y, player.width, player.height);
     } else {
-        // Fallback rosso
+ 
         ctx.fillStyle = 'red';
         ctx.fillRect(player.x, player.y, player.width, player.height);
     }
@@ -120,5 +116,5 @@ function draw() {
     });
 }
 
-// Avvia il loop del gioco
+
 draw();
