@@ -5,13 +5,15 @@
     <title>Pokemon Adventure</title>
     <style>
         body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background: #111; overflow: hidden; }
-        canvas { border: 4px solid #444; image-rendering: pixelated; } 
-        .info { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.6); color: white; padding: 8px; font-family: sans-serif; border-radius: 4px; }
+        canvas { border: 4px solid #444; image-rendering: pixelated; }
+        .ui { position: absolute; top: 10px; left: 10px; color: white; font-family: sans-serif; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px; }
     </style>
 </head>
 <body>
-    <div class="info">Usa le frecce per muovere Ash</div>
-    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <div class="ui">Esplora la mappa • Confini attivati</div>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    
+    <script src="sprite.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
