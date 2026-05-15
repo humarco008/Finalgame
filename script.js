@@ -5,54 +5,58 @@ let currentMap = 'CASA';
 
 const maps = {
     'CASA': {
-        color: '#f3e5ab', // Crema/Parquet chiaro
+        color: '#3e2723', 
         obstacles: [
-            // Mura perimetrali interne
-            { x: 0, y: 0, w: 800, h: 40, color: '#5d4037' }, 
-            // Letto (proporzionato: Ash ci starebbe comodo sopra)
-            { x: 50, y: 50, w: 70, h: 100, color: '#e91e63', label: "LETTO" },
-            // Scrivania PC
-            { x: 600, y: 50, w: 120, h: 60, color: '#8d6e63', label: "PC" },
-            // Grande tappeto centrale (estetico)
-            { x: 250, y: 250, w: 300, h: 200, color: '#c62828', isFloor: true },
-            // Librerie giganti (parete sinistra)
-            { x: 40, y: 200, w: 40, h: 300, color: '#4e342e' },
-            // Armadio
-            { x: 720, y: 200, w: 40, h: 150, color: '#4e342e' }
+            { x: 0, y: 0, w: 800, h: 20, color: '#1b1102' },
+            { x: 50, y: 50, w: 80, h: 120, color: '#ffffff', label: "LETTO" },
+            { x: 600, y: 50, w: 100, h: 15, color: '#000000', label: "TV" },
+            { x: 580, y: 65, w: 140, h: 40, color: '#5d4037' }, 
+            { x: 580, y: 220, w: 140, h: 60, color: '#795548', label: "DIVANO" },
+            { x: 20, y: 250, w: 50, h: 200, color: '#2b1d0e' },
+            { x: 250, y: 300, w: 200, h: 150, color: '#4e342e', isFloor: true }
         ],
-        door: { x: 740, y: 520, w: 60, h: 40, target: 'CITTA', spawnX: 110, spawnY: 200 },
-        npcs: []
+        door: { x: 740, y: 500, w: 60, h: 60, color: '#a1887f', target: 'CITTA', spawnX: 110, spawnY: 200 }
     },
     'CITTA': {
-        color: '#91d058', // Verde brillante Pokémon
+        color: '#7cb342', // Verde erba bosco
         obstacles: [
-            // Strade (estetiche, grigie)
-            { x: 0, y: 180, w: 800, h: 100, color: '#9e9e9e', isFloor: true },
-            { x: 350, y: 0, w: 100, h: 600, color: '#9e9e9e', isFloor: true },
-            // Casa di Ash (Edificio grande)
+            // Strade di terra battuta (Calpestabili)
+            { x: 0, y: 180, w: 800, h: 100, color: '#d7ccc8', isFloor: true },
+            { x: 350, y: 0, w: 100, h: 600, color: '#d7ccc8', isFloor: true },
+            
+            // Edifici principali
             { x: 40, y: 40, w: 180, h: 140, color: '#ff8a65', label: "CASA TUA" },
-            // Centro Pokémon (Rosso)
-            { x: 500, y: 40, w: 220, h: 140, color: '#ef5350', label: "POKÉ CENTER" },
-            // Pokémon Market (Blu)
-            { x: 500, y: 350, w: 220, h: 140, color: '#42a5f5', label: "MARKET" },
-            // Laghetto (Blu scuro)
-            { x: 50, y: 350, w: 200, h: 200, color: '#0288d1', label: "ACQUA" },
-            // Alberi ornamentali
-            { x: 280, y: 40, w: 40, h: 40, color: '#2e7d32' },
-            { x: 280, y: 100, w: 40, h: 40, color: '#2e7d32' },
-            { x: 420, y: 450, w: 40, h: 40, color: '#2e7d32' }
+            { x: 500, y: 40, w: 220, h: 140, color: '#ef5350', label: "POKÉMON CENTER" },
+            
+            // --- AREA BOSCO (Ex area acqua) ---
+            // Un ammasso di alberi (verdi scuri) e cespugli (verdi chiari)
+            { x: 50, y: 350, w: 60, h: 60, color: '#1b5e20', label: "ALBERO" },
+            { x: 110, y: 350, w: 60, h: 60, color: '#2e7d32' },
+            { x: 170, y: 350, w: 60, h: 60, color: '#1b5e20' },
+            { x: 50, y: 410, w: 60, h: 60, color: '#43a047', label: "CESPUGLIO" },
+            { x: 110, y: 410, w: 60, h: 60, color: '#1b5e20' },
+            { x: 170, y: 410, w: 60, h: 60, color: '#2e7d32' },
+            { x: 50, y: 470, w: 180, h: 80, color: '#1b5e20', label: "BOSCO FITTO" },
+
+            // Altri alberi sparsi per la città
+            { x: 300, y: 50, w: 40, h: 40, color: '#1b5e20' },
+            { x: 460, y: 300, w: 40, h: 40, color: '#1b5e20' },
+            { x: 600, y: 500, w: 60, h: 60, color: '#2e7d32', label: "ALBERO" }
         ],
-        door: { x: 90, y: 170, w: 40, h: 20, target: 'CASA', spawnX: 700, spawnY: 480 },
+        door: { x: 90, y: 170, w: 40, h: 20, target: 'CASA', spawnX: 680, spawnY: 510 },
         npcs: [
-            { x: 420, y: 210, name: "BULLO" },
-            { x: 550, y: 290, name: "INFERMIERA" }
+            { x: 420, y: 210, name: "EISA" },
+            { x: 550, y: 290, name: "PIPPO" },
+            { x: 280, y: 450, name: "MAMADOU" }
         ]
     }
 };
 
 const player = {
-    x: 380, y: 280,
-    width: 40, height: 40, // Ridimensionato per proporzioni migliori
+    x: 140, // Spawn vicino al letto
+    y: 80,
+    width: 40, 
+    height: 40,
     collisionSize: 28,
     speed: 5,
     frameIndex: 0,
@@ -89,7 +93,8 @@ function update() {
     if (nextY + player.height > canvas.height) nextY = canvas.height - player.height;
 
     let canMoveX = true, canMoveY = true;
-    const obstaclesOnly = [...map.obstacles.filter(o => !o.isFloor), ...map.npcs.map(n => ({x: n.x, y: n.y}))];
+    const obstaclesOnly = [...map.obstacles.filter(o => !o.isFloor)];
+    if (map.npcs) obstaclesOnly.push(...map.npcs.map(n => ({x: n.x, y: n.y})));
     
     for (let item of obstaclesOnly) {
         if (checkCollision(nextX, player.y, item)) canMoveX = false;
@@ -118,38 +123,35 @@ function draw() {
     ctx.fillStyle = map.color;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Disegno Ostacoli e Pavimenti
+    // Disegno Porta/Uscita
+    ctx.fillStyle = map.door.color || 'rgba(255,255,0,0.2)';
+    ctx.fillRect(map.door.x, map.door.y, map.door.w, map.door.h);
+
+    // Disegno Oggetti Mappa
     map.obstacles.forEach(obs => {
         ctx.fillStyle = obs.color;
         ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
         
-        if (!obs.isFloor) {
-            ctx.strokeStyle = 'rgba(0,0,0,0.1)';
-            ctx.strokeRect(obs.x, obs.y, obs.w, obs.h);
-        }
-        
         if (obs.label) {
-            ctx.fillStyle = "white";
-            ctx.font = "bold 12px 'Courier New'";
+            ctx.fillStyle = (obs.color === '#ffffff' || obs.color === '#d7ccc8') ? 'black' : 'white';
+            ctx.font = "bold 10px Arial";
             ctx.textAlign = "center";
             ctx.fillText(obs.label, obs.x + obs.w/2, obs.y + obs.h/2 + 5);
         }
     });
 
-    // Porta (Invisibile o luminosa)
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-    ctx.fillRect(map.door.x, map.door.y, map.door.w, map.door.h);
+    // NPC con i nuovi nomi
+    if (map.npcs) {
+        map.npcs.forEach(npc => {
+            if (npcImage.complete) ctx.drawImage(npcImage, npc.x, npc.y, 40, 40);
+            ctx.fillStyle = "black";
+            ctx.font = "bold 12px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText(npc.name, npc.x + 20, npc.y - 5);
+        });
+    }
 
-    // NPC
-    map.npcs.forEach(npc => {
-        ctx.drawImage(npcImage, npc.x, npc.y, 40, 40);
-        ctx.fillStyle = "black";
-        ctx.font = "10px Arial";
-        ctx.textAlign = "center";
-        ctx.fillText(npc.name, npc.x + 20, npc.y - 5);
-    });
-
-    // Player
+    // Ash
     if (framesLoaded > 0) {
         ctx.drawImage(playerFrames[player.frameIndex], player.x, player.y, player.width, player.height);
     }
